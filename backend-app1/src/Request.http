@@ -1,0 +1,46 @@
+@api = http://localhost:3001/tasks
+@api.register = http://localhost:3001/register
+@api.login = http://localhost:3001/login
+@api.profile = http://localhost:3001/profile
+
+GET {{api}}/111
+
+###
+
+###
+
+GET {{api.register}}
+
+###
+
+POST {{api.register}}
+Content-Type: application/json
+
+{
+  "username": "pedro",
+  "email": "pedro@gmail.com",
+  "password_hash": "pedro"
+}
+
+###
+
+POST {{api.login}}
+Content-Type: application/json
+
+{
+  "username": "pedro",
+  "password": "pedro"
+}
+
+###
+
+GET {{api.profile}}
+Content-Type: application/json
+
+
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MjU0OTY1MjUsImV4cCI6MTcyNTU4MjkyNX0.lGLYI8CWF8RM6Z6RhyNQFUb15S5hrnekEB6MCnkZnhw"
+}
+
+
+
