@@ -3,6 +3,7 @@ import { connection } from '../config';
 export const getUserProfile = async (req, res) => {
 
     const userId = req.userId;
+    console.log(res);
 
     try {
         connection.query(
@@ -18,7 +19,7 @@ export const getUserProfile = async (req, res) => {
                 }
 
                 const user = results[0];
-                res.json({
+                res.status(201).json({
                     id: user.id,
                     username: user.username,
                     email: user.email,

@@ -1,7 +1,7 @@
 @api = http://localhost:3001/tasks
-@api.register = http://localhost:3001/register
-@api.login = http://localhost:3001/login
-@api.profile = http://localhost:3001/profile
+@api.register = http://localhost:3000/register
+@api.login = http://localhost:3000/login
+@api.profile = http://localhost:3000/profile
 
 GET {{api}}/111
 
@@ -17,9 +17,9 @@ POST {{api.register}}
 Content-Type: application/json
 
 {
-  "username": "pedro",
-  "email": "pedro@gmail.com",
-  "password_hash": "pedro"
+  "username": "test2",
+  "email": "test2@gmail.com",
+  "password_hash": "test2"
 }
 
 ###
@@ -28,19 +28,21 @@ POST {{api.login}}
 Content-Type: application/json
 
 {
-  "username": "pedro",
-  "password": "pedro"
+  "username": "test2",
+  "password": "test2"
 }
 
 ###
 
-GET {{api.profile}}
-Content-Type: application/json
+#curl -X GET http://localhost:3000/profile
+#-H 'Authorization: Bearer <tu_token_aqui>'
+GET http://localhost:3000/profile
+Authorization: Bearer <eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MjYxMjk5MTksImV4cCI6MTcyNjIxNjMxOX0.E-KXyNrllU4t6un4U-fCZyHfgcTy6XghA5jpy0Nmw-0>
 
 
-{
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MjU0OTY1MjUsImV4cCI6MTcyNTU4MjkyNX0.lGLYI8CWF8RM6Z6RhyNQFUb15S5hrnekEB6MCnkZnhw"
-}
+
+
+
 
 
 
