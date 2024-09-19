@@ -1,26 +1,17 @@
-@api = http://localhost:3001/tasks
-@api.register = http://localhost:3000/register
+@PORT = 3000
+@api = http://localhost:3000/
 @api.login = http://localhost:3000/login
-@api.profile = http://localhost:3000/profile
-
-GET {{api}}/111
-
-###
+@api.register = http://localhost:3000/register
+@api.verify = http://localhost:3000/verify
+@api.logout = http://localhost:3000/logout
 
 ###
 
-GET {{api.register}}
+GET {{api}}/verify
 
 ###
 
-POST {{api.register}}
-Content-Type: application/json
-
-{
-  "username": "test2",
-  "email": "test2@gmail.com",
-  "password_hash": "test2"
-}
+POST {{api}}/logout
 
 ###
 
@@ -28,18 +19,24 @@ POST {{api.login}}
 Content-Type: application/json
 
 {
-  "username": "test2",
-  "password": "test2"
+  "username": "test13",
+  "password": "testpass123"
 }
 
 ###
 
-#curl -X GET http://localhost:3000/profile
-#-H 'Authorization: Bearer <tu_token_aqui>'
-GET http://localhost:3000/profile
-Authorization: Bearer <eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MjYxMjk5MTksImV4cCI6MTcyNjIxNjMxOX0.E-KXyNrllU4t6un4U-fCZyHfgcTy6XghA5jpy0Nmw-0>
+GET {{api.verify}}
 
+###
 
+POST {{api.register}}
+Content-Type: application/json
+
+{
+  "username": "test13",
+  "email" : "test13@gmail.com",
+  "password": "testpass123"
+}
 
 
 

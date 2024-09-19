@@ -1,8 +1,11 @@
 import { Router } from 'express';
-import { registerUser } from '../controllers/register.controller';
-import { authenticateToken } from "../middlewares/authMiddleware";
-import { getUserProfile } from '../controllers/profile.controller';
-import { loginUser } from '../controllers/login.controller';
+import { register} from '../controllers/register.controller';
+import { validateSchema } from '../middlewares/validate';
+import { login } from "../controllers/login.controller";
+import { verifyToken } from "../controllers/verify.controller";
+import { logout } from "../controllers/logout.controller";
+
+import { registerSchema, loginSchema } from "../schemas/auth.schema";
 
 const router = Router();
 
@@ -11,28 +14,38 @@ const router = Router();
  * @swagger
  * /register:
  *  post:
- *          summary: post user credentials
+ *          summary: Register user credentials
  * */
 
-router.post('/register', registerUser)
+
+router.post('/register', validateSchema(registerSchema),register);
 
 /**
  * @swagger
  * /login:
  *  post:
- *          summary: registra el usuario
+ *          summary: Login user credentials
  * */
 
-router.post('/login', loginUser)
+router.post('/login', validateSchema(loginSchema),login);
 
 /**
  * @swagger
- * /profile:
+ * /verify:
  *  get:
- *          summary: Autentica al usuario
+ *          summary: Verify user credentials
  *
  * */
 
-router.get('/profile', authenticateToken, getUserProfile)
+router.get('/verify', verifyToken);
+
+/**
+ * @swagger
+ * /logout:
+ *  post:
+ *          summary: Logout user credentials
+ */
+
+router.post('/logout', verifyToken, logout);
 
 export default router;

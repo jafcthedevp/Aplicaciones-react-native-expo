@@ -1,18 +1,54 @@
 import { Router } from "express";
-import { getTasks, getTaskCount, getTask, saveTask, updateTasks, deleteTasks } from '../controllers/tasks.controller'
+import { getTasks, createTask, deleteTask, updateTask, getTask } from "../controllers/tasks.controller";
+import { auth } from "../middlewares/auth";
+import { validateSchema } from "../middlewares/validate";
+import { createTaskSchema } from "../schemas/task.schema.js";
 
-const router = Router()
+const router = Router();
 
-router.get('/tasks', getTasks)
+/**
+ * @swagger
+ * /tasks:
+ *  get:
+ *          summary: Register user credentials
+ * */
 
-router.get('/tasks/count', getTaskCount)
+router.get("/tasks", auth, getTasks);
 
-router.get('/tasks/:id', getTask)
+/**
+ * @swagger
+ * /tasks:
+ *  post:
+ *          summary: Register user credentials
+ * */
 
-router.post('/tasks', saveTask)
+router.post("/tasks", auth, validateSchema(createTaskSchema), createTask);
 
-router.delete('/tasks/:id', deleteTasks)
+/**
+ * @swagger
+ * /tasks/:id:
+ *  get:
+ *          summary: Register user credentials
+ * */
 
-router.put('/tasks/:id', updateTasks)
+router.get("/tasks/:id", auth, getTask);
+
+/**
+ * @swagger
+ * /tasks/:id:
+ *  put:
+ *          summary: Register user credentials
+ * */
+
+router.put("/tasks/:id", auth, updateTask);
+
+/**
+ * @swagger
+ * /delete:
+ *  tasks/:id:
+ *          summary: Register user credentials
+ * */
+
+router.delete("/tasks/:id", auth, deleteTask);
 
 export default router;
